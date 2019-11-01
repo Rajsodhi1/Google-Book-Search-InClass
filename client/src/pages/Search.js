@@ -37,7 +37,7 @@ class Search extends Component {
               title: book.volumeInfo.title,
               author: book.volumeInfo.authors,
               description: book.volumeInfo.description,
-              thumbnail: book.volumeInfo.imageLinks.thumbnail,
+              image: book.volumeInfo.imageLinks.thumbnail,
               link: book.volumeInfo.infoLink
             }
             return item;
