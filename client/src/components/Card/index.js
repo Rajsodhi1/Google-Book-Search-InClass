@@ -23,9 +23,9 @@ function Card(props) {
             </li>
           </ul>
         </div>
-        <span onClick={props.deleteBook(props.id)} className="delete">
-          X
-        </span>
+        <button value={props.id} onClick={props.bookDelete} className="delete">
+          Delete
+        </button>
       </div>
     );
   } else {
@@ -50,7 +50,7 @@ function Card(props) {
             </li>
           </ul>
         </div>
-        <span onClick={props.saveBook(props.id)} className="save"> O </span>
+        <button type='button' value ={props.id} onClick={props.bookSave} className="save"> Save book</button>
       </div>
     );
   }

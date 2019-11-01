@@ -9,7 +9,14 @@ class Saved extends Component {
   }
 
   componentDidMount() {
-    this.getBooks();
+    console.log('get saved books')
+    API.getBooks()
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          books: res.data
+        })
+      })
   }
 
   getBooks = () => {
@@ -21,8 +28,19 @@ class Saved extends Component {
     })
   }
 
-  bookDelete = id => {
-    API.deleteBook(id).then(() => this.getBooks)
+  bookDelete = event => {
+    let {value:id} = event.target;
+    console.log(`Delete book ${id}`)
+    API.deleteBook(id)
+      .then(res => {
+        console.log(res.data)
+        API.getBooks()
+          .then(res2 => {
+            this.setState({
+              books: res2.data
+            })
+          })
+      })
   }
 
     render() {
@@ -40,7 +58,7 @@ class Saved extends Component {
                 image={book.image}
                 key={book._id}
                 view="saved"
-                bookDelete={this.deleteBook(book._id)}
+                bookDelete={this.bookDelete}
               />
             )
           })}
@@ -50,4 +68,4 @@ class Saved extends Component {
     }
   }
   
-  export default Saved
+  export default Saved;
