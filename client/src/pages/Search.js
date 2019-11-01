@@ -47,8 +47,12 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
-  saveBook = id => {
+  bookSave = id => {
     API.saveBook(id)
+  }
+
+  deleteBook = id => {
+    API.deleteBook(id).then(() => this.getBooks)
   }
 
   render() {
@@ -74,8 +78,7 @@ class Search extends Component {
                 id={book._id}
                 image={book.image}
                 key={book._id}
-                view="saved"
-                bookSave={() => this.saveBook(book._id)}
+                bookSave={this.saveBook}
               />
             )
           })}
