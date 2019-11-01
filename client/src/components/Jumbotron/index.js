@@ -3,10 +3,9 @@ import React from "react";
 function Jumbotron() {
   return (
     <div
-      style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-      className="jumbotron"
-    >
-      React Google Book Search
+      style={{ height: 150, clear: "both", paddingTop: 45, background: "#C1F2BE", fontSize: 50, textAlign: "center"}}
+      className="jumbotron">
+      <strong>Search Google Books!</strong>
     </div>
   );
 }

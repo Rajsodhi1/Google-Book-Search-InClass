@@ -55,7 +55,9 @@ class Search extends Component {
     return (
       <div className="container-fluid" max-height= "545px"
       border= "1px #DDDDDD solid"
-      border-radius= "4px">
+      border-radius= "4px"
+      overflow-y= "scroll"
+      overflow-x= "hidden">
         <Form
           value={this.state.searchTerm}
           handleInputChange={this.handleInputChange}
