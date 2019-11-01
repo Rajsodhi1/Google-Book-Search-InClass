@@ -31,15 +31,19 @@ class Search extends Component {
   loadBooks = () => {
     API.googleThis(this.state.searchTerm)
       .then(res => {
+        console.log(res.data.items)
         this.setState({
+          // books: res.data.items
           books: res.data.items.map(book => {
             let item = {
+              id: book.id,
               title: book.volumeInfo.title,
               author: book.volumeInfo.authors,
               description: book.volumeInfo.description,
-              thumbnail: book.volumeInfo.imageLinks.thumbnail,
+              image: book.volumeInfo.imageLinks.thumbnail,
               link: book.volumeInfo.infoLink
             }
+            console.log(item)
             return item;
           })
         })
@@ -47,13 +51,27 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
-  saveBook = id => {
-    API.saveBook(id)
+  bookSave = event => {
+    let {value} = event.target;
+    console.log("Save Book")
+    console.log(value)
+    let book = this.state.books.find(book => book.id ===value)
+    console.log(book)
+    API.saveBook(book)
+      .then(res => {
+        console.log("Book Saved")
+      })
   }
+
+
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" max-height= "545px"
+      border= "1px #DDDDDD solid"
+      border-radius= "4px"
+      overflow-y= "scroll"
+      overflow-x= "hidden">
         <Form
           value={this.state.searchTerm}
           handleInputChange={this.handleInputChange}
@@ -67,11 +85,11 @@ class Search extends Component {
                 author={book.author}
                 description={book.description}
                 link={book.link}
-                id={book._id}
+                id={book.id}
                 image={book.image}
-                key={book._id}
-                view="saved"
-                bookSave={() => this.saveBook(book._id)}
+                key={book.id}
+                view=""
+                bookSave={this.bookSave}
               />
             )
           })}

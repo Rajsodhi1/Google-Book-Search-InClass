@@ -2,14 +2,14 @@ import React from "react";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-light">
+      <a className="navbar-brand text-dark" href="/">
         Google Books
       </a>
-      <a className="navbar-item" href="/search">
+      <a className="navbar-item text-dark nav-link" href="/search">
         Search
       </a>
-      <a className="navbar-item" href="/save">
+      <a className="navbar-item text-dark nav-link" href="/saved">
         Save
       </a>
     </nav>
